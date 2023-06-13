@@ -1,0 +1,28 @@
+// This is a comment
+version: 1 // set JSON-RPC version
+
+// Method definition 
+// (params are optional, except for id and version, which are placed by default)
+// Types are a subset of TypeScript types and share the same notation
+methodName: (code: string, n: number, array: any[]) --> ();
+
+// Nested method declaration
+nestedMethods {
+    separator: -; // Default is '/';
+    furtherNesting {
+        separator: _ ;
+        method: () --> (); // defines nestedMethods-furtherNesting_method
+    }
+    method: () <-- (); // defines nestedMethods-method 
+}
+// Client --> Server
+// Client <-- Server
+// (Request) --> (Response)
+
+// Custom type declaration
+type MyType {
+    field: number,
+    optional?: string
+}
+
+// version=1.0methodName:(code:string,n:number,array:any[])-->();nestedMethods{separator:-furtherNesting{separator:_;method:()-->();}method:()<--();}typeMyType{field:number;optional?:string;}
