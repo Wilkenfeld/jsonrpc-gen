@@ -1,5 +1,6 @@
 USING: peg.ebnf peg multiline regexp tools.continuations strings sequences sequences.deep vectors kernel prettyprint ;
-IN: parser
+
+IN: parser.private
 
 ! Define the grammar for the specification language
 EBNF: spec-parser [=[
@@ -24,4 +25,6 @@ EBNF: spec-parser [=[
 : remove-comments ( spec -- clean-spec ) R/ \/\/.*\n?/ "" re-replace ; 
 : remove-unneeded-whitespace ( spec -- clean-spec ) R/ [\t\r\n ]+/ "" re-replace ;
 : clean-spec ( spec -- cleaned-spec ) remove-comments remove-unneeded-whitespace ;
+
+IN: parser
 : parse ( spec -- ast ) clean-spec spec-parser ;
